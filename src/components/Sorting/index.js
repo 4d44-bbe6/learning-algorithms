@@ -1,11 +1,13 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+
 import Sketch from "react-p5";
 import { randomInt } from "../../lib/helpers";
 import { quickSort } from "../../lib/quicksort";
-import { mergeSort } from "../../lib/mergesort";
+import { mergeSort } from "./MergeSort/mergesort";
+import Merge from "./MergeSort";
 
 const Sorting = () => {
+  const [currentAlgorithm, setCurrentAlgorithm] = useState("");
   let w = 1;
   let values = [];
   let states = [];
@@ -20,6 +22,17 @@ const Sorting = () => {
   useEffect(() => {
     resetDate();
   });
+
+  const currentSorting = () => {
+    switch (currentAlgorithm) {
+      case "mergeSort": {
+        return <Merge />;
+      }
+      default: {
+        return "";
+      }
+    }
+  };
 
   const resetDate = () => {
     values = new Array(Math.floor(1000 / w));
@@ -59,13 +72,17 @@ const Sorting = () => {
           Reset Data
         </button>
         <button
-          onClick={() => mergeSort(values)}
+          onClick={() => {
+            mergeSort(values);
+            setCurrentAlgorithm("mergeSort");
+          }}
           className="mx-4 bg-blue-500 hoger:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         >
           Merge Sort
         </button>
         <button
           onClick={() => {
+            setCurrentAlgorithm("quickSort");
             quickSort(values, 0, values.length - 1, states);
           }}
           className="mx-4 bg-blue-500 hoger:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -75,81 +92,7 @@ const Sorting = () => {
       </div>
 
       <div id="code" className="p-8 md:p-10 md:w-3/6">
-        <p>
-          We call the Merge Sort algorithm by running the mergeSort function
-          with the the following parameters:
-        </p>
-        <ul>
-          <li>
-            <span className="font-bold">1. </span>The array containing all the
-            random data.
-          </li>
-          <li>
-            <span className="font-bold">2. </span>The first element as
-            startIndex (0)
-          </li>
-          <li>
-            <span className="font-bold">3. </span>The last element of the array
-            as endIndex
-          </li>
-        </ul>
-
-        <p>
-          <span className="font-bold">Note:</span> in trying to avoid having to
-          use multiple arrays for the division (left, right) we keep track of
-          the elements to be sorted and merge with a startIndex, middleIndex and
-          endIndex.
-        </p>
-        <pre>
-          {`
-mergeSort(values, 0, values.length)}
-        `}
-        </pre>
-        <p>
-          In the mergeSort function we check if we need to further divide the
-          (sub)array. When we do we find a new middleIndex and recursively call
-          mergeSort again for both divisions. When this resolves, we call the
-          merge function.
-        </p>
-        <pre>{`
-export const mergeSort = async (array, startIndex, endIndex) => {
-  if (endIndex - startIndex > 1) {
-    let middleIndex = startIndex + ((endIndex - startIndex) >> 1);
-    await mergeSort(array, startIndex, middleIndex);
-    await mergeSort(array, middleIndex + 1, endIndex);
-    await merge(array, startIndex, middleIndex, endIndex);
-  }
-};
-
-const merge = async (array, startIndex, middleIndex, EndIndex) => {
-  let tmp = [];
-  let length = middleIndex - startIndex;
-  let j, k;
-
-  for (let i = 0; i < length; i++) {
-    tmp[i] = array[startIndex + i];
-  }
-
-  j = middleIndex;
-  k = startIndex;
-  let i = 0;
-  while (i < length && j < EndIndex) {
-    if (tmp[i] <= array[j]) {
-      await sleep(1);
-
-      array[k++] = tmp[i++];
-    } else {
-      await sleep(1);
-      array[k++] = array[j++];
-    }
-  }
-
-  while (i < length) {
-    await sleep(1);
-    array[k++] = tmp[i++];
-  }
-};
-        `}</pre>
+        {currentSorting()}
       </div>
     </div>
   );

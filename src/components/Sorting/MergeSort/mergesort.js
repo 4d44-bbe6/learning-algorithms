@@ -1,4 +1,4 @@
-import { sleep } from "./helpers";
+import { sleep } from "../../../lib/helpers";
 
 export const mergeSort = async (
   array,
