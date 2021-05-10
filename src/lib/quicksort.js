@@ -1,40 +1,27 @@
-import { sleep } from "./helpers";
-
-export const quickSort = async (arr, startIndex, endIndex, states) => {
+export const quickSort = async (arr, startIndex, endIndex) => {
   if (startIndex >= endIndex) {
     return;
   }
-  let index = await partition(arr, startIndex, endIndex, states);
-  states[index] = -1;
+  let index = await partition(arr, startIndex, endIndex);
 
   Promise.all([
-    quickSort(arr, startIndex, index - 1, states),
-    quickSort(arr, index + 1, endIndex, states),
+    quickSort(arr, startIndex, index - 1),
+    quickSort(arr, index + 1, endIndex),
   ]);
 };
 
-async function partition(arr, startIndex, endIndex, states) {
-  for (let i = startIndex; i < endIndex; i++) {
-    states[i] = 1;
-  }
-
+async function partition(arr, startIndex, endIndex) {
   let pivotValue = arr[endIndex];
   let pivotIndex = startIndex;
-  states[pivotIndex] = 0;
+
   for (let i = startIndex; i < endIndex; i++) {
     if (arr[i] < pivotValue) {
       await swap(arr, i, pivotIndex);
-      states[pivotIndex++] = -1;
-      states[pivotIndex] = 0;
+      pivotIndex++;
     }
   }
   await swap(arr, pivotIndex, endIndex);
 
-  for (let i = startIndex; i < endIndex; i++) {
-    if (i !== pivotIndex) {
-      states[i] = -1;
-    }
-  }
   return pivotIndex;
 }
 
@@ -44,3 +31,6 @@ async function swap(arr, a, b) {
   arr[a] = arr[b];
   arr[b] = temp;
 }
+const sleep = (ms) => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
