@@ -1,5 +1,4 @@
 import React from "react";
-import { mergeSort, merge } from "./mergesort";
 
 const Merge = () => {
   return (
