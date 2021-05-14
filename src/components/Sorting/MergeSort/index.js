@@ -4,7 +4,7 @@ const Merge = () => {
   return (
     <>
       <h1 className="font-bold text-lg">Merge Sort</h1>
-      <p className="py-2">
+      <p>
         We call the Merge Sort algorithm by running the mergeSort function with
         the the following parameters:
       </p>
@@ -23,18 +23,20 @@ const Merge = () => {
         </li>
       </ul>
 
-      <p className="py-2">
-        <span className="font-bold">Note:</span> in trying to avoid having to
-        use multiple arrays for the division (left, right) we keep track of the
-        elements to be sorted and merge with a startIndex, middleIndex and
-        endIndex.
-      </p>
       <pre>
         {`
 mergeSort(values, 0, values.length)}
         `}
       </pre>
-      <p className="py-2">
+
+      <p>
+        <span className="font-bold">Note:</span> in trying to avoid having to
+        use multiple arrays for the division (left, right) we keep track of the
+        elements to be sorted and merge with a startIndex, middleIndex and
+        endIndex.
+      </p>
+
+      <p>
         In the mergeSort function we check if we need to further divide the
         (sub)array. We divide until we have multiple subarrays with a single
         element in it. This process is done recursively by calling mergeSort
@@ -57,7 +59,7 @@ export const mergeSort = async (
 };
         `}
       </pre>
-      <p className="py-2">
+      <p>
         In the merge section we take in the entire array as well as the indices
         to determine the part we're merging. While merging we compare the values
         added to a temporary array with the values of the elements after the
@@ -65,12 +67,12 @@ export const mergeSort = async (
         'right' items.
       </p>
 
-      <p className="py-2">
+      <p>
         If there are still items on the 'left' side and there are no items to
         compare them to, we add them back to the array.
       </p>
       <pre>{`
-      export const merge = async (array, startIndex, middleIndex, EndIndex) => {
+export const merge = async (array, startIndex, middleIndex, EndIndex) => {
   let tmp = []; // temp array for storing elements
   let length = middleIndex - startIndex;
 
@@ -100,7 +102,7 @@ export const mergeSort = async (
 };
         `}</pre>
       <div>
-        <span className="font-bold">Big-O Analysis</span>
+        <span className="font-bold">Analysis</span>
         <p>
           Merge sort is a divide and conquer algorithm with the following steps:
         </p>
@@ -108,30 +110,44 @@ export const mergeSort = async (
           <li>
             <p>
               <span className="font-bold">1. </span>
-              The divide step calculates the middle of each (sub)array. This
-              step takes O(1) time.
+              The divide step calculates the middle of each (sub)array.{" "}
+              <span className="underline">This step takes O(1) time.</span>
             </p>
           </li>
           <li>
             <p>
               <span className="font-bold">2. </span>
               The conquer step recursively divides both subarrays (left and
-              right). <span className="font-bold">log&#178;(n)</span>
+              right).{" "}
+              <span className="underline">
+                This step takes log<sup>2</sup>n time.
+              </span>
             </p>
           </li>
           <li>
             <p>
               <span className="font-bold">3. </span>
               The merge step merges elements from both subarrays (left and
-              right). This step takes O(n) time
+              right).{" "}
+              <span className="underline">This step takes O(n) time.</span>
             </p>
           </li>
         </ul>
-        <p className="py-4">
-          <span>T(n) = runtime Merge Sort.</span>
-          Time complexity of Merge Sort is
-          <span className="font-bold">O(n Log n)</span>.
-        </p>
+        <p className="font-bold pt-4">Master Theorem</p>
+        <div className="grid grid-cols-2">
+          <div>
+            <p className="font-bold">T(n) = 2T(n/2)+ O(n)</p>
+            <p>
+              O(n<sup>log</sup>
+              <sub>
+                b<sup>a</sup>
+              </sub>
+              ) == f(n)
+            </p>
+            <p className="py-4 font-bold">T(n) = O(nlogn)</p>
+          </div>
+          <div>a</div>
+        </div>
       </div>
     </>
   );

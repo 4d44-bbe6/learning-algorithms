@@ -21,7 +21,6 @@ async function partition(arr, startIndex, endIndex) {
     }
   }
   await swap(arr, pivotIndex, endIndex);
-
   return pivotIndex;
 }
 
