@@ -134,19 +134,33 @@ export const merge = async (array, startIndex, middleIndex, EndIndex) => {
           </li>
         </ul>
         <p className="font-bold pt-4">Master Theorem</p>
-        <div className="grid grid-cols-2">
-          <div>
-            <p className="font-bold">T(n) = 2T(n/2)+ O(n)</p>
-            <p>
-              O(n<sup>log</sup>
-              <sub>
-                b<sup>a</sup>
-              </sub>
-              ) == f(n)
-            </p>
-            <p className="py-4 font-bold">T(n) = O(nlogn)</p>
-          </div>
-          <div>a</div>
+
+        <div>
+          <p className="font-bold">T(n) = 2T(n/2)+ O(n)</p>
+          <span>
+            O(n<sup>log</sup>
+            <sub>
+              b<sup>a</sup>
+            </sub>
+            ) {" = "}
+          </span>
+          <span>
+            O(n<sup>log</sup>
+            <sup>
+              <sub>2</sub>2
+            </sup>
+            <sup></sup>)
+          </span>
+          {" = "} <span> O(n) </span>
+          <p>f(n) = 0(n)</p>
+          <span>
+            T(n) = f(n) * log n (case: f(n) = O(n
+            <sup>
+              log<sub>b</sub>a
+            </sup>
+            )
+          </span>
+          <p className="py-4 font-bold">T(n) = O(nlogn)</p>
         </div>
       </div>
     </>

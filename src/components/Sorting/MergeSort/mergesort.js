@@ -1,7 +1,7 @@
 export const mergeSort = async (
   array,
   startIndex = 0,
-  endIndex = array.length - 1
+  endIndex = array.length
 ) => {
   if (endIndex - startIndex > 1) {
     let middleIndex = startIndex + ((endIndex - startIndex) >> 1);
@@ -11,7 +11,12 @@ export const mergeSort = async (
   }
 };
 
-export const merge = async (array, startIndex, middleIndex, EndIndex) => {
+export const merge = async (
+  array,
+  startIndex = 0,
+  middleIndex = array.length / 2,
+  EndIndex = array.length
+) => {
   let tmp = []; // temp array for storing elements
   let length = middleIndex - startIndex;
 

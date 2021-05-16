@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
 
 import Sketch from "react-p5";
-import { randomInt } from "../../lib/helpers";
-import { quickSort } from "../../lib/quicksort";
+import { quickSort } from "./QuickSort/quicksort";
 import { mergeSort } from "./MergeSort/mergesort";
+import { bubbleSort } from "./BubbleSort/bubblesort";
+import { heapSort } from "./HeapSort/heapsort";
+
 import Merge from "./MergeSort";
+import Quick from "./QuickSort";
 
 const Sorting = () => {
   const [currentAlgorithm, setCurrentAlgorithm] = useState("");
-  let w = 1;
+  let w = 10;
   let values = [];
 
   const colors = {
@@ -25,6 +28,10 @@ const Sorting = () => {
       case "mergeSort": {
         return <Merge />;
       }
+      case "quickSort": {
+        return <Quick />;
+      }
+
       default: {
         return "";
       }
@@ -37,7 +44,13 @@ const Sorting = () => {
         return mergeSort(values);
       }
       case "quickSort": {
-        return quickSort(values, 0, values.length - 1);
+        return quickSort(values);
+      }
+      case "bubbleSort": {
+        return bubbleSort(values);
+      }
+      case "heapSort": {
+        return heapSort(values);
       }
       default: {
         return;
@@ -46,7 +59,7 @@ const Sorting = () => {
   };
 
   const resetDate = () => {
-    values = new Array(Math.floor(1000 / w));
+    values = new Array(100);
     for (let i = 0; i < values.length; i++) {
       values[i] = randomInt(0, 500);
     }
@@ -63,6 +76,10 @@ const Sorting = () => {
       p5.fill(colors.default);
       p5.rect(i * w, p5.height - values[i], w, values[i]);
     }
+  };
+
+  const randomInt = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1) + min);
   };
 
   return (
@@ -90,6 +107,22 @@ const Sorting = () => {
           className="mx-4 bg-blue-500 hoger:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         >
           Quick Sort
+        </button>
+        <button
+          onClick={() => {
+            setCurrentAlgorithm("bubbleSort");
+          }}
+          className="mx-4 bg-blue-500 hoger:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Bubble Sort
+        </button>
+        <button
+          onClick={() => {
+            setCurrentAlgorithm("heapSort");
+          }}
+          className="mx-4 bg-blue-500 hoger:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Heap Sort
         </button>
       </div>
       <div id="start">
