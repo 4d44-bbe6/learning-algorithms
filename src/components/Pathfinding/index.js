@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import Sketch from "react-p5";
+import { Component } from "react";
+// import Sketch from "react-p5";
 
 export default class Pathfinding extends Component {
   setup = (p5, canvasParentRef) => {

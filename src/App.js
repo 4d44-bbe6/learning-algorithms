@@ -22,8 +22,7 @@ function App() {
           Pathfinding
         </button>
       </div>
-      {/* {currentMode === "sorting" ? <Sorting /> : <Pathfinding />} */}
-      <Pathfinding />
+      {currentMode === "sorting" ? <Sorting /> : <Pathfinding />}
     </div>
   );
 }
