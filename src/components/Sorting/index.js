@@ -20,7 +20,7 @@ const Sorting = () => {
   };
 
   useEffect(() => {
-    resetDate();
+    resetData();
   });
 
   const currentSorting = () => {
@@ -58,7 +58,7 @@ const Sorting = () => {
     }
   };
 
-  const resetDate = () => {
+  const resetData = () => {
     values = new Array(100);
     for (let i = 0; i < values.length; i++) {
       values[i] = randomInt(0, 500);
@@ -87,7 +87,7 @@ const Sorting = () => {
       <Sketch setup={setup} draw={draw} />
       <div className="flex pt-4">
         <button
-          onClick={() => resetDate()}
+          onClick={() => resetData()}
           className="mx-4 bg-red-500 hoger:bg-red-700 text-white font-bold py-2 px-4 rounded"
         >
           Reset Data

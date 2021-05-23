@@ -5,35 +5,23 @@ const Merge = () => {
     <>
       <h1 className="font-bold text-lg">Merge Sort</h1>
       <p>
-        We call the Merge Sort algorithm by running the mergeSort function with
-        the the following parameters:
+        We call the Merge Sort algorithm by running the mergeSort function and
+        passing an array with random integers.
       </p>
-      <ul>
-        <li>
-          <span className="font-bold">1. </span>The array containing all the
-          random data.
-        </li>
-        <li>
-          <span className="font-bold">2. </span>The first element as startIndex
-          (0)
-        </li>
-        <li>
-          <span className="font-bold">3. </span>The last element of the array as
-          endIndex
-        </li>
-      </ul>
 
       <pre>
         {`
-mergeSort(values, 0, values.length)}
+mergeSort(values)
         `}
       </pre>
-
       <p>
-        <span className="font-bold">Note:</span> in trying to avoid having to
-        use multiple arrays for the division (left, right) we keep track of the
-        elements to be sorted and merge with a startIndex, middleIndex and
-        endIndex.
+        To avoid having to use multiple arrays for the division (left, right) we
+        keep track of the elements to be sorted and merge with a startIndex,
+        middleIndex and endIndex.
+      </p>
+      <p>
+        When starting mergeSort for the first time, startIndex and endIndex are
+        being initialized with the first and last item of the given array.
       </p>
 
       <p>
@@ -154,11 +142,11 @@ export const merge = async (array, startIndex, middleIndex, EndIndex) => {
           {" = "} <span> O(n) </span>
           <p>f(n) = 0(n)</p>
           <span>
-            T(n) = f(n) * log n (case: f(n) = O(n
+            T(n) = f(n) * log n (Case: f(n) = O(n
             <sup>
               log<sub>b</sub>a
             </sup>
-            )
+            ) // Case 2 Master Theorem
           </span>
           <p className="py-4 font-bold">T(n) = O(nlogn)</p>
         </div>
