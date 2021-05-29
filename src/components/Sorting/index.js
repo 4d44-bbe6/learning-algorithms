@@ -8,6 +8,8 @@ import { heapSort } from "./HeapSort/heapsort";
 
 import Merge from "./MergeSort";
 import Quick from "./QuickSort";
+import Bubble from "./BubbleSort";
+import Heap from "./HeapSort";
 
 const Sorting = () => {
   const [currentAlgorithm, setCurrentAlgorithm] = useState("");
@@ -15,8 +17,8 @@ const Sorting = () => {
   let values = [];
 
   const colors = {
-    background: "#494947",
-    default: "#E6E6E6",
+    background: "white",
+    default: "lightgrey",
   };
 
   useEffect(() => {
@@ -30,6 +32,12 @@ const Sorting = () => {
       }
       case "quickSort": {
         return <Quick />;
+      }
+      case "bubbleSort": {
+        return <Bubble />;
+      }
+      case "heapSort": {
+        return <Heap />;
       }
 
       default: {
