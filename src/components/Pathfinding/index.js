@@ -49,16 +49,22 @@ const Pathfinding = () => {
                   1 in our implementation)
                 </li>
                 <li>
-                  d. We calculate the distance from the parent to neighbour by
-                  calling the heuristic function
+                  d. If a neighbour with a lower g (+ 1 distance) exists in the
+                  openSet, skip this neighbour.
                 </li>
                 <li>
-                  e. If a neighbour with a lower g (+ 1 distance) exists in the
-                  openSet, skip this neighbour.
+                  e. We calculate the distance from the parent to neighbour by
+                  calling the heuristic function
                 </li>
               </ul>
               <li></li>
             </ul>
+          </p>
+          <p className="pt-4 font-bold">Time complexity</p>
+          <p>
+            It may takes us to travel the entire edge of the graph to reach the
+            destination node. So the worst case time complexity is O(n), where n
+            is the number of edges in the graph.
           </p>
         </div>
       </div>
