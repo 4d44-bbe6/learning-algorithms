@@ -1,5 +1,5 @@
+import "./node.css";
 import { useState, useEffect } from "react";
-import Node from "./Node";
 import { astar } from "./astar";
 
 const Astar = () => {
@@ -10,7 +10,7 @@ const Astar = () => {
     "Run A* to find a path from start-node (green) to end-node(red)"
   );
 
-  const cols = 20;
+  const cols = 30;
   const rows = 20;
 
   const NODE_START_ROW = 0;
@@ -38,7 +38,7 @@ const Astar = () => {
     setGrid(grid);
     addNeighbours(grid);
     const startNode = grid[NODE_START_ROW][NODE_START_COL];
-    const endNode = grid[NODE_END_ROW][NODE_END_COL];
+    const endNode = grid[NODE_END_COL][NODE_END_ROW];
     startNode.isWall = false;
     endNode.isWall = false;
     let path = astar(startNode, endNode);
@@ -78,7 +78,7 @@ const Astar = () => {
       this.f = 0;
       this.h = 0;
 
-      Math.random(1) < 0.3 ? (this.isWall = true) : (this.isWall = false);
+      Math.random(1) < 0.25 ? (this.isWall = true) : (this.isWall = false);
       this.neighbours = [];
       this.previous = undefined;
       this.addNeighbours = function (grid) {
@@ -98,7 +98,7 @@ const Astar = () => {
         const node = shortestPath[i];
         document.getElementById(`node-${node.x}-${node.y}`).className =
           "node node-shortest-path";
-      }, 2 * i);
+      }, 8 * i);
     }
   };
 
@@ -106,16 +106,15 @@ const Astar = () => {
     setCurrentStatus("Running algorithm..");
     for (let i = 0; i <= visitedNodes.length; i++) {
       if (i === visitedNodes.length) {
-        // eslint-disable-next-line no-loop-func
         setTimeout(() => {
           visualizeShortestPath(path);
-        }, 5 * i);
+        }, 10 * i);
       } else {
         setTimeout(() => {
           const node = visitedNodes[i];
           document.getElementById(`node-${node.x}-${node.y}`).className =
             "node node-visited";
-        }, 5 * i);
+        }, 10 * i);
       }
     }
     setCurrentStatus("Algorithm finished..");
@@ -159,9 +158,6 @@ const Astar = () => {
         <div className="my-4">
           <h2>{currentStatus}</h2>
         </div>
-        <div>
-          <h1>A* search algorithm</h1>
-        </div>
       </div>
     );
   };
@@ -170,3 +166,14 @@ const Astar = () => {
 };
 
 export default Astar;
+
+const Node = ({ isStart, isEnd, row, col, isWall }) => {
+  const classes = isStart
+    ? "node-start"
+    : isEnd
+    ? "node-end"
+    : isWall
+    ? "node-wall"
+    : "default";
+  return <div className={`node ${classes}`} id={`node-${row}-${col}`}></div>;
+};

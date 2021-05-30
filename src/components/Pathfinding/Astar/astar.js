@@ -5,6 +5,7 @@ export const astar = (startNode, endNode) => {
   let visitedNodes = [];
 
   openSet.push(startNode);
+
   while (openSet.length > 0) {
     let leastIndex = 0;
     for (let i = 0; i < openSet.length; i++) {
@@ -16,6 +17,7 @@ export const astar = (startNode, endNode) => {
     let current = openSet[leastIndex];
     visitedNodes.push(current);
 
+    // Found the endNode, stop
     if (current === endNode) {
       let temp = current;
       path.push(temp);
@@ -51,7 +53,7 @@ export const astar = (startNode, endNode) => {
 
         if (newPath) {
           neighbour.h = heuristic(neighbour, endNode);
-          neighbour.f = neighbour.g + neighbour.f;
+          neighbour.f = neighbour.g + neighbour.h;
           neighbour.previous = current;
         }
       }
