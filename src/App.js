@@ -4,7 +4,7 @@ import Sorting from "./components/Sorting";
 import Pathfinding from "./components/Pathfinding";
 
 function App() {
-  const [currentMode, setCurrentMode] = useState("pathfinding");
+  const [currentMode, setCurrentMode] = useState("sorting");
 
   return (
     <div className="App">
