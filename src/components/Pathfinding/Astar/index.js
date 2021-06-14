@@ -39,6 +39,7 @@ const Astar = () => {
     addNeighbours(grid);
     const startNode = grid[NODE_START_ROW][NODE_START_COL];
     const endNode = grid[NODE_END_COL][NODE_END_ROW];
+
     startNode.isWall = false;
     endNode.isWall = false;
     let path = astar(startNode, endNode);
@@ -73,7 +74,7 @@ const Astar = () => {
       this.y = j;
 
       this.isStart = this.x === NODE_START_ROW && this.y === NODE_START_COL;
-      this.isEnd = this.x === NODE_END_ROW && this.y === NODE_END_COL;
+      this.isEnd = this.x === NODE_END_COL && this.y === NODE_END_ROW;
       this.g = 0;
       this.f = 0;
       this.h = 0;
